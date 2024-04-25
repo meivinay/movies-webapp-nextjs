@@ -16,7 +16,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} flex bg-sky-50`}>
+        <nav className="flex flex-col bg-white px-4 py-2 rounded self-center">
+          <a>
+            Home
+          </a>
+          <a>
+            Search
+          </a>
+        </nav>
+        {children}
+      </body>
     </html>
   );
 }
