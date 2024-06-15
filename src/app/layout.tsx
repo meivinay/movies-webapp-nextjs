@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import HomeIcon from '@/icons/home.tsx'
 import { Inter } from "next/font/google";
+
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -19,7 +21,8 @@ export default function RootLayout({
       <body className={`${inter.className} flex bg-sky-50`}>
         <nav className="flex flex-col bg-white px-4 py-2 rounded self-center">
           <a>
-            Home
+
+          <HomeIcon />
           </a>
           <a>
             Search

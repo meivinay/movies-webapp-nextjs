@@ -22,7 +22,9 @@ export default function Home(props) {
             height={334}
           />
         </div>
-        <div className="absolute left-1/2 -bottom-0 w-1/4 h-24 -translate-x-1/2 outline outline-[12px] outline-sky-50 bg-sky-500 rounded-lg"></div>
+        <div className="absolute left-1/2 -bottom-0 w-1/4 h-24 -translate-x-1/2 outline outline-[12px] outline-sky-50 bg-sky-500 rounded-lg" />
+        <div className="h-10 w-10 absolute bottom-[10%] left-[34%] rounded-br-3xl " style={{boxShadow: `3px 6px 0 0px #f0f9ff`}} />
+        <div className="h-10 w-10 absolute bottom-[10%] right-[34%] rounded-bl-3xl " style={{boxShadow: `-3px 6px 0 0px #f0f9ff`}} />
       </div>
       <ul>
         <li className="h-80">
