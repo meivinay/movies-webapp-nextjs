@@ -9,8 +9,8 @@ const TEMP_DATA = new Array(30).fill({
 export default function Home(props) {
   return (
     <main className="flex flex-col w-full overflow-x-hidden overflow-y-auto">
-      <div className="relative h-5/6 outline shrink-0">
-        <div className="h-[90%] overflow-hidden">
+      <div className="relative h-5/6 shrink-0 mt-4">
+        <div className="h-[90%] overflow-hidden rounded-[2rem]">
           <Image
             src="https://image.tmdb.org/t/p/original//m1rvaIIrDGwSYMt5mWG1WiTndmE.jpg"
             sizes="100vw"
@@ -20,11 +20,12 @@ export default function Home(props) {
             }}
             width={500}
             height={334}
+            alt=''
           />
+        <div className="h-10 w-10 absolute bottom-[10%] left-[33.7%] rounded-br-[2rem] " style={{boxShadow: `10px 8px 0 8px #f0f9ff`}} />
+        <div className="h-10 w-10 absolute bottom-[10%] right-[33.7%] rounded-bl-[2rem] " style={{boxShadow: `-10px 8px 0 8px #f0f9ff`}} />
         </div>
-        <div className="absolute left-1/2 -bottom-0 w-1/4 h-24 -translate-x-1/2 outline outline-[12px] outline-sky-50 bg-sky-500 rounded-lg" />
-        <div className="h-10 w-10 absolute bottom-[10%] left-[34%] rounded-br-3xl " style={{boxShadow: `3px 6px 0 0px #f0f9ff`}} />
-        <div className="h-10 w-10 absolute bottom-[10%] right-[34%] rounded-bl-3xl " style={{boxShadow: `-3px 6px 0 0px #f0f9ff`}} />
+        <div className="absolute left-1/2 -bottom-0 w-1/4 h-24 -translate-x-1/2 outline outline-[1rem] outline-sky-50 bg-sky-500 rounded-[1rem]" />
       </div>
       <ul>
         <li className="h-80">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import HomeIcon from '@/icons/home.tsx'
+import HomeIcon from '@/icons/home.tsx';
+import SearchIcon from '@/icons/search.tsx'
 import { Inter } from "next/font/google";
 
 import "./globals.css";
@@ -18,14 +19,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} flex bg-sky-50`}>
-        <nav className="flex flex-col bg-white px-4 py-2 rounded self-center">
+      <body className={`${inter.className} flex bg-sky-50 gap-x-4`}>
+        <nav className="flex flex-col bg-white px-4 py-2 rounded self-center gap-y-4">
           <a>
 
           <HomeIcon />
           </a>
           <a>
-            Search
+            <SearchIcon />
           </a>
         </nav>
         {children}
