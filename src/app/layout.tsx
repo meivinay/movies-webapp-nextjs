@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-import HomeIcon from '@/icons/home.tsx';
-import SearchIcon from '@/icons/search.tsx'
 import { Inter } from "next/font/google";
-
 import "./globals.css";
-
 const inter = Inter({ subsets: ["latin"] });
+
+import NavList from "@/components/NavList/indes";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,16 +17,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} flex bg-sky-50 gap-x-4`}>
-        <nav className="flex flex-col bg-white px-4 py-2 rounded self-center gap-y-4">
-          <a>
-
-          <HomeIcon />
-          </a>
-          <a>
-            <SearchIcon />
-          </a>
-        </nav>
+      <body
+        className={`${inter.className} flex bg-sky-50 gap-x-4 pl-2 min-h-full`}
+      >
+        <NavList />
         {children}
       </body>
     </html>

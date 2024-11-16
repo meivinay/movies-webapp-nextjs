@@ -1,16 +1,36 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const Card = (props) => {
-    const {
-        src='',
-        alt=''
-    } = props?.movie || {};
+const IMAGE_BASE_URL = process.env.TMDB_IMAGE_BASE_URL;
 
-    return <Link href="/" className="w-40 h-60">
-        <Image src={src} height={240} width={160} alt={alt} />
-        <h2>Baby Reindeer</h2>
+const Card = (props) => {
+  const { isTvShow, movie = {} } = props;
+  const {
+    src = "",
+    alt = "",
+    original_title: orginalTitle,
+    original_name: originalName,
+    backdrop_path,
+    poster_path,
+    id,
+  } = movie;
+
+  return (
+    <Link
+      href={`/details?type=${isTvShow ? "tv" : "movie"}&id=${id}`}
+      className="w-40 inline-block"
+    >
+      <Image
+        className="rounded"
+        src={`${IMAGE_BASE_URL}original${poster_path}`}
+        height={40 * 4}
+        width={60 * 4}
+        alt={alt}
+        style={{ width: "auto", height: "auto" }}
+      />
+      {<p>{isTvShow ? originalName : orginalTitle}</p>}
     </Link>
-}
+  );
+};
 
 export default Card;

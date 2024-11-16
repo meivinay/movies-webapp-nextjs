@@ -1,0 +1,9 @@
+.meta-details {
+  transition: 1s all ease;
+}
+
+.meta-details:hover {
+  transition: 1s all ease;
+  flex: 2 1;
+  max-width: 500px;
+}

@@ -1,0 +1,9 @@
+.main-detail-meta-top-left {
+  bottom: 7.7rem;
+  left: 11rem;
+  height: 2.2rem;
+  width: 2.2rem;
+  bottom: 7.6rem;
+  border-radius: 0 0 0 2.2rem;
+  box-shadow: -10px 10px 0 10px rgb(240 249 255 / var(--tw-bg-opacity));
+}

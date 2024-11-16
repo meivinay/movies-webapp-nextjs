@@ -13,6 +13,19 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      flexGrow: {
+        3: "3",
+      },
+      boxShadow: {
+        "rating-circle":
+          "0px 0px 0px 8px rgb(240 249 255 / var(--tw-bg-opacity))",
+        "movie-main-img":
+          "8px -8px 0px 8px rgb(240 249 255 / var(--tw-bg-opacity))",
+        "movie-main-meta":
+          "0px 0px 0px 14px rgb(240 249 255 / var(--tw-bg-opacity))",
+        "curve-meta-left-top":
+          "-4px 0px 0px 0px rgb(240 249 255 / var(--tw-bg-opacity))",
+      },
     },
   },
   plugins: [],
