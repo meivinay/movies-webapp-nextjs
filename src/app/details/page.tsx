@@ -11,7 +11,7 @@ const Details = async (props: {
 }) => {
   const { searchParams } = props;
   const movieId = Number(searchParams.id);
-  const movieDetails = await (await getMovieDetails(movieId)).json();
+  const movieDetails = await getMovieDetails(movieId);
   const {
     poster_path: posterPath,
     vote_average: voteAverage,

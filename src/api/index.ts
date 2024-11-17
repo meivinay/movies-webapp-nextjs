@@ -21,3 +21,6 @@ export const getMovieDetails = async (movieId: number) => {
 export const getTopSearches = async (timeFrame: string | undefined = "day") => {
   return await get(`${TMDB_API_URL}trending/all/${timeFrame}`);
 };
+
+export const searchCollection = async (query: string) =>
+  await get(`${TMDB_API_URL}search/collection?query=${query}`);

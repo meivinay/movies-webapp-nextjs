@@ -1,15 +1,13 @@
-const TOKEN = process.env.TOKEN
+const TOKEN = process.env.TOKEN;
 
 const options = {
-  method: 'GET',
+  method: "GET",
   headers: {
-    accept: 'application/json',
-    Authorization: `Bearer ${TOKEN}`
-  }
+    accept: "application/json",
+    Authorization: `Bearer ${TOKEN}`,
+  },
 };
 
-export const get = async (
-    url=''
-) => {
-   return await fetch(url, options);
-}
+export const get = async (url = "") => {
+  return await (await fetch(url, options)).json();
+};
