@@ -1,3 +1,4 @@
+import getGenresString from "@/utils/getGenresString";
 import styles from "@/styles/metaDetails.module.css";
 
 const MetaDetails = (props) => {
@@ -19,7 +20,7 @@ const MetaDetails = (props) => {
       </p>
       <p className="flex flex-col">
         <span className="font-bold">Genre</span>
-        {genres.reduce((acc, curr) => `${acc.name}, ${curr.name}`)}
+        {getGenresString(genres)}
       </p>
     </div>
   );

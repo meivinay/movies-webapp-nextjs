@@ -1,22 +1,33 @@
+// import { getGenres } from "@/api";
 import Search from "@/components/Search";
 import SearchList from "@/components/SearchList/indes";
 import TopSearchList from "@/components/TopSearchList/indes";
 import { Suspense } from "react";
 
-const SearchPage = (props) => {
+const SearchPage = async (props) => {
   const { searchParams: { q } = {} } = props;
+  // const [movieGenres, tvGenres] = await Promise.allSettled([
+  //   getGenres("movie"),
+  //   getGenres("tv"),
+  // ]);
 
   return (
     <main className="grid grid-cols-3 auto-rows-min grow gap-4 mt-6">
       <Search />
       <h2 className="col-span-full">Top Searches Today</h2>
-      {q ? (
-        <Suspense fallback={<LoadingCard />}>
-          <SearchList searchValue={q} />
-        </Suspense>
-      ) : (
-        <TopSearchList />
-      )}
+      <Suspense fallback={<LoadingCard />}>
+        {q ? (
+          <SearchList
+            searchValue={q}
+            // movieGenres={movieGenres.value.genres}
+            // tvGenres={tvGenres.value.genres}
+          />
+        ) : (
+          <TopSearchList
+          // movieGenres={movieGenres} tvGenres={tvGenres}
+          />
+        )}
+      </Suspense>
     </main>
   );
 };
