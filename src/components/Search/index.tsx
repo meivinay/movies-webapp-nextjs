@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 const Search = () => {
   const router = useRouter();
   const pathname = usePathname();
-
+  // TODO: use form here with action=""
   return (
     <input
       className="rounded col-start-2 col-end-2 h-[48px] p-4"
