@@ -1402,30 +1402,31 @@ export default async function Home(props) {
             src="https://image.tmdb.org/t/p/original//m1rvaIIrDGwSYMt5mWG1WiTndmE.jpg"
             sizes="100vw"
             style={{
-              width: "100%",
-              height: "auto",
+              // width: "100%",
+              // height: "auto",
+              objectFit: "cover",
             }}
-            width={500}
-            height={334}
+            fill
+            // width={500}
+            // height={334}
             alt=""
           />
-        </div>
-        <div className="absolute left-1/2 bottom-0 w-80 h-28 -translate-x-1/2 outline outline-[12px] outline-sky-50 bg-white rounded-3xl">
           <div
-            className="absolute h-1/2 w-12 border-b-[14px] rounded-br-3xl border-transparent -left-[59px] top-[22px]"
+            className="absolute h-9 w-9  border-transparent rounded-br-full  bottom-0 left-cl"
             style={{
               boxShadow:
-                "4px 12px 0px 3px rgb(240 249 255 / var(--tw-bg-opacity))",
+                "7px 9px 0px 5px rgb(240 249 255 / var(--tw-bg-opacity))",
             }}
           />
           <div
-            className="absolute h-1/2 w-12 border-b-[14px] rounded-bl-3xl border-transparent -right-[59px] top-[22px]"
+            className="absolute h-9 w-9  border-transparent rounded-bl-full bottom-0 left-r-cl"
             style={{
               boxShadow:
-                "-4px 12px 0px 3px rgb(240 249 255 / var(--tw-bg-opacity))",
+                "-7px 9px 0px 5px rgb(240 249 255 / var(--tw-bg-opacity))",
             }}
           />
         </div>
+        <div className="absolute left-[36%] bottom-0 w-96 h-28 outline outline-[12px] outline-sky-50 bg-white rounded-3xl"></div>
       </div>
       <ul>
         {/* <li className="h-80">
