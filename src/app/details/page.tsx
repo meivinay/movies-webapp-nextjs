@@ -1,4 +1,4 @@
-import { getMovieDetails } from "@/api";
+import { getMovieDetails, fetchTvShowDetails } from "@/api";
 import MetaDetails from "@/components/MetaDetails";
 const IMAGE_BASE_URL = process.env.TMDB_IMAGE_BASE_URL;
 import styles from "@/styles/curve.module.css";
@@ -10,13 +10,11 @@ const Details = async (props: {
   };
 }) => {
   const { searchParams } = props;
-  const movieId = Number(searchParams.id);
-  const movieDetails = await getMovieDetails(movieId);
-  const {
-    poster_path: posterPath,
-    vote_average: voteAverage,
-    title,
-  } = movieDetails;
+  const { id, type } = searchParams;
+  const details = await (type === "movie"
+    ? getMovieDetails(id)
+    : fetchTvShowDetails(id));
+  const { poster_path: posterPath, vote_average: voteAverage, title } = details;
 
   return (
     <main className="flex grow gap-x-4 max-h-full my-4">
@@ -80,7 +78,7 @@ const Details = async (props: {
           </div>
         </div>
       </div>
-      <MetaDetails details={movieDetails} />
+      <MetaDetails details={details} />
     </main>
   );
 };

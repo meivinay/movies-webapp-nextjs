@@ -1,7 +1,8 @@
 import Card from "@/components/card";
-import Image from "next/image";
+
 import { useEffect } from "react";
 import { getLatestMovies } from "@/api/index";
+import Hero from "@/components/Hero";
 
 const TEMP_DATA = {
   dates: {
@@ -1395,39 +1396,8 @@ export default async function Home(props) {
   //  const posts = await getLatestMovies('https://api.vercel.app/blog')
 
   return (
-    <main className="flex flex-col w-full overflow-x-hidden overflow-y-auto">
-      <div className="relative h-5/6 shrink-0 mt-4">
-        <div className="relative h-[90%] overflow-hidden rounded-[2rem]">
-          <Image
-            src="https://image.tmdb.org/t/p/original//m1rvaIIrDGwSYMt5mWG1WiTndmE.jpg"
-            sizes="100vw"
-            style={{
-              // width: "100%",
-              // height: "auto",
-              objectFit: "cover",
-            }}
-            fill
-            // width={500}
-            // height={334}
-            alt=""
-          />
-          <div
-            className="absolute h-9 w-9  border-transparent rounded-br-full  bottom-0 left-cl"
-            style={{
-              boxShadow:
-                "7px 9px 0px 5px rgb(240 249 255 / var(--tw-bg-opacity))",
-            }}
-          />
-          <div
-            className="absolute h-9 w-9  border-transparent rounded-bl-full bottom-0 left-r-cl"
-            style={{
-              boxShadow:
-                "-7px 9px 0px 5px rgb(240 249 255 / var(--tw-bg-opacity))",
-            }}
-          />
-        </div>
-        <div className="absolute left-[36%] bottom-0 w-96 h-28 outline outline-[12px] outline-sky-50 bg-white rounded-3xl"></div>
-      </div>
+    <main className="flex flex-col w-full overflow-x-hidden overflow-y-auto pr-4">
+      <Hero />
       <ul>
         {/* <li className="h-80">
           Recommendation

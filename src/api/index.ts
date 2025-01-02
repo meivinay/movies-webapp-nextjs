@@ -14,8 +14,12 @@ export const getLatestMovies = async (options = {}) => {
   });
 };
 
-export const getMovieDetails = async (movieId: number) => {
-  return await get(`${TMDB_API_URL}movie/${movieId}`);
+export const getMovieDetails = async (id: string) => {
+  return await get(`${TMDB_API_URL}movie/${id}`);
+};
+
+export const fetchTvShowDetails = async (id: string) => {
+  return await get(`${TMDB_API_URL}tv/${id}`);
 };
 
 export const getTopSearches = async (timeFrame: string | undefined = "day") => {
@@ -24,3 +28,27 @@ export const getTopSearches = async (timeFrame: string | undefined = "day") => {
 
 export const searchCollection = async (query: string) =>
   await get(`${TMDB_API_URL}search/collection?query=${query}`);
+
+export const getGenres = (type: string) =>
+  get(`${TMDB_API_URL}genre/${type}/list`);
+
+interface Movie {
+  adult: boolean;
+  backdrop_path: string;
+  id: number;
+  title: string;
+  original_title: string;
+  poster_path: string;
+  media_type: string;
+  genre_ids: number[];
+}
+interface API_RESPONSE {
+  page: number;
+  results: Movie[];
+}
+
+export const fetchTrendingMovies = async (
+  timeWindow: "week" | "day"
+): Promise<API_RESPONSE> => {
+  return get(`${TMDB_API_URL}trending/movie/${timeWindow}`);
+};
