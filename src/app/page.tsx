@@ -1,8 +1,9 @@
 import Card from "@/components/card";
-
+import SUPPORTED_REGIONS from "@/constants/countries";
 import { useEffect } from "react";
 import { getLatestMovies } from "@/api/index";
 import Hero from "@/components/Hero";
+import RegionalMoviesList from "@/components/RegionalMoviesList";
 
 const TEMP_DATA = {
   dates: {
@@ -1397,7 +1398,7 @@ export default async function Home(props) {
 
   return (
     <main className="flex flex-col w-full overflow-x-hidden overflow-y-auto pr-4">
-      <Hero />
+      {/* <Hero /> */}
       <ul>
         {/* <li className="h-80">
           Recommendation
@@ -1448,6 +1449,14 @@ export default async function Home(props) {
               </li>
             ))}
           </ul>
+        </li>
+        <li>
+          Popular Indian Movies
+          <RegionalMoviesList region={SUPPORTED_REGIONS[0]} />
+        </li>
+        <li>
+          Popular Anime
+          <RegionalMoviesList region={SUPPORTED_REGIONS[2]} genre={16} />
         </li>
       </ul>
     </main>

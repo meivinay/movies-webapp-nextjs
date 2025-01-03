@@ -1,5 +1,7 @@
+import createQueryString from "@/utils/createQueryString";
+import SUPPORTED_REGIONS from "@/constants/countries";
 import { get } from "./request";
-
+import { Movie } from "@/ts/interfaces";
 const TMDB_API_URL = process.env.API_URL;
 
 export const getLatestMovies = async (options = {}) => {
@@ -32,16 +34,6 @@ export const searchCollection = async (query: string) =>
 export const getGenres = (type: string) =>
   get(`${TMDB_API_URL}genre/${type}/list`);
 
-interface Movie {
-  adult: boolean;
-  backdrop_path: string;
-  id: number;
-  title: string;
-  original_title: string;
-  poster_path: string;
-  media_type: string;
-  genre_ids: number[];
-}
 interface API_RESPONSE {
   page: number;
   results: Movie[];
@@ -51,4 +43,20 @@ export const fetchTrendingMovies = async (
   timeWindow: "week" | "day"
 ): Promise<API_RESPONSE> => {
   return get(`${TMDB_API_URL}trending/movie/${timeWindow}`);
+};
+
+type PopularRegionMovieQuery = {
+  region: (typeof SUPPORTED_REGIONS)[number];
+  page?: number;
+};
+export const fetchPopularRegionalMovies = async (
+  query: PopularRegionMovieQuery
+) => {
+  return await get(
+    `${TMDB_API_URL}discover/movie?${createQueryString({
+      ...query,
+      with_origin_country: query.region,
+      sort_by: "popularity.desc",
+    })}`
+  );
 };

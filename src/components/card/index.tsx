@@ -1,3 +1,4 @@
+import { Movie } from "@/ts/interfaces";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -13,12 +14,12 @@ const Card = (props) => {
     backdrop_path,
     poster_path,
     id,
-  } = movie;
+  }: Movie = movie;
 
   return (
     <Link
       href={`/details?type=${isTvShow ? "tv" : "movie"}&id=${id}`}
-      className="w-40 inline-block"
+      className="w-40 inline-block flex-shrink-0"
     >
       <Image
         className="rounded"
