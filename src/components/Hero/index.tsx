@@ -1,19 +1,20 @@
 import dynamic from "next/dynamic";
-import { fetchTrendingMovies } from "@/api";
+import { fetchTrendingMovies, fetchUpcomingMovies } from "@/api";
 import Image from "next/image";
 const IMAGE_BASE_URL = process.env.TMDB_IMAGE_BASE_URL;
 import Link from "next/link";
+import { Movie } from "@/ts/interfaces";
 const PlayIcon = dynamic(() => import("@/icons/PlayArrow"), { ssr: false });
 const InfoCircle = dynamic(() => import("@/icons/InfoCircle"), { ssr: false });
 
 const Hero = async () => {
-  const res = await fetchTrendingMovies("week");
-  const temp = res.results[0];
+  const res: { results: Movie[] } = await fetchUpcomingMovies();
+  const firstMovie = res.results[0];
   return (
     <div className="hero relative h-5/6 shrink-0 mt-4">
       <div className="relative h-[90%] overflow-hidden rounded-[2rem]">
         <Image
-          src={`${IMAGE_BASE_URL}original${temp.backdrop_path}`}
+          src={`${IMAGE_BASE_URL}original${firstMovie.backdrop_path}`}
           sizes="100vw"
           style={{
             // width: "100%",
@@ -45,10 +46,10 @@ const Hero = async () => {
           className="text-xl self-center font-bold flex-1"
           href={{
             pathname: "/details",
-            query: { type: temp.media_type, id: temp.id },
+            query: { type: firstMovie.media_type, id: firstMovie.id },
           }}
         >
-          {temp.title}
+          {firstMovie.title}
         </Link>
         <div className="flex mt-auto gap-x-4 text-white mx-auto">
           <button
@@ -63,7 +64,7 @@ const Hero = async () => {
             className="px-4 py-1 flex bg-amber-300 rounded items-center font-bold"
             href={{
               pathname: "/details",
-              query: { type: temp.media_type, id: temp.id },
+              query: { type: firstMovie.media_type, id: firstMovie.id },
             }}
           >
             Details
