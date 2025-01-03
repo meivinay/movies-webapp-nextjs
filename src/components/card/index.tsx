@@ -19,17 +19,24 @@ const Card = (props) => {
   return (
     <Link
       href={`/details?type=${isTvShow ? "tv" : "movie"}&id=${id}`}
-      className="w-40 inline-block flex-shrink-0"
+      className="w-44 inline-block flex-shrink-0"
     >
       <Image
         className="rounded"
         src={`${IMAGE_BASE_URL}original${poster_path}`}
         height={40 * 4}
         width={60 * 4}
-        alt={alt}
+        alt={isTvShow ? originalName : orginalTitle}
         style={{ width: "auto", height: "auto" }}
       />
-      {<p>{isTvShow ? originalName : orginalTitle}</p>}
+      {
+        <p
+          title={isTvShow ? originalName : orginalTitle}
+          className="line-clamp-2 mt-1 text-center"
+        >
+          {isTvShow ? originalName : orginalTitle}
+        </p>
+      }
     </Link>
   );
 };
