@@ -2,6 +2,7 @@ import createQueryString from "@/utils/createQueryString";
 import SUPPORTED_REGIONS from "@/constants/countries";
 import { get } from "./request";
 import { Movie } from "@/ts/interfaces";
+import sleep from "@/utils/sleep";
 const TMDB_API_URL = process.env.API_URL;
 
 // export const getLatestMovies = async () => {
@@ -65,8 +66,9 @@ export const fetchPopularRegionalMovies = async (
   );
 };
 
-export const fetchUpcomingMovies = async () =>
-  await get(`${TMDB_API_URL}movie/upcoming?language=en-US&page=1`);
+export const fetchUpcomingMovies = async () => {
+  return await get(`${TMDB_API_URL}movie/upcoming?language=en-US&page=1`);
+};
 
 export const fetchPopularMoviesList = async () =>
   await get(`${TMDB_API_URL}movie/popular`);

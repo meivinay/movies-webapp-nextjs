@@ -6,7 +6,9 @@ import {
   fetchLatestTvShowsList,
   fetchPopularMoviesList,
   fetchPopularTvShowsList,
+  fetchUpcomingMovies,
 } from "@/api/index";
+
 import Hero from "@/components/Hero";
 import List from "@/components/MovieList";
 import RegionalMoviesList from "@/components/RegionalMoviesList";
@@ -17,7 +19,7 @@ export default async function Home() {
   return (
     <main className="flex flex-col w-full overflow-x-hidden overflow-y-auto pr-4">
       <Suspense fallback={<HeroLoading />}>
-        <Hero />
+        <Hero apiPromise={fetchUpcomingMovies()} />
       </Suspense>
       <ul>
         <li>
