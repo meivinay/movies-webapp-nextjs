@@ -3,9 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 const IMAGE_BASE_URL = process.env.TMDB_IMAGE_BASE_URL;
-
-const Card = (props) => {
-  const { isTvShow, movie = {} } = props;
+type Props = {
+  data: Movie;
+  isTvShow: boolean;
+};
+const Card = (props: Props) => {
+  const { data, isTvShow } = props;
   const {
     src = "",
     alt = "",
@@ -14,7 +17,9 @@ const Card = (props) => {
     backdrop_path,
     poster_path,
     id,
-  }: Movie = movie;
+    name,
+    title,
+  } = data;
 
   return (
     <Link
@@ -26,15 +31,12 @@ const Card = (props) => {
         src={`${IMAGE_BASE_URL}original${poster_path}`}
         height={40 * 4}
         width={60 * 4}
-        alt={isTvShow ? originalName : orginalTitle}
+        alt={name || title}
         style={{ width: "auto", height: "auto" }}
       />
       {
-        <p
-          title={isTvShow ? originalName : orginalTitle}
-          className="line-clamp-2 mt-1 text-center"
-        >
-          {isTvShow ? originalName : orginalTitle}
+        <p title={name || title} className="line-clamp-2 mt-1 text-center">
+          {name || title}
         </p>
       }
     </Link>

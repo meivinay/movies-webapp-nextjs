@@ -10,4 +10,5 @@ export interface Movie {
   original_name: string;
   alt: string;
   src: string;
+  name: string;
 }

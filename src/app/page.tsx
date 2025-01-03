@@ -1,16 +1,19 @@
 import Card from "@/components/card";
 import SUPPORTED_REGIONS from "@/constants/countries";
-import { Suspense, useEffect } from "react";
-import { getLatestMovies } from "@/api/index";
+import { Suspense } from "react";
+import {
+  fetchLatesMoviesList,
+  fetchLatestTvShowsList,
+  fetchPopularMoviesList,
+  fetchPopularTvShowsList,
+} from "@/api/index";
 import Hero from "@/components/Hero";
 import List from "@/components/MovieList";
 import RegionalMoviesList from "@/components/RegionalMoviesList";
 import MovieListSkeleton from "@/components/MovieList/loading";
 import HeroLoading from "@/components/Hero/loading";
 
-export default async function Home(props) {
-  //  const posts = await getLatestMovies('https://api.vercel.app/blog')
-
+export default async function Home() {
   return (
     <main className="flex flex-col w-full overflow-x-hidden overflow-y-auto pr-4">
       <Suspense fallback={<HeroLoading />}>
@@ -18,41 +21,31 @@ export default async function Home(props) {
       </Suspense>
       <ul>
         <li>
-          <h2>Latest Movies</h2>
+          <h2 className="font-bold text-xl mb-2">Latest Movies</h2>
           <Suspense fallback={<MovieListSkeleton />}>
-            <List api={getLatestMovies} />
+            <List api={fetchLatesMoviesList} isTvShow={false} />
           </Suspense>
         </li>
-        {/* <li>
-          Latest Tv Shows
-          <ul className="flex flex-nowrap gap-x-4 overflow-auto">
-            {LATEST_TV_SHOWS.results.map((movie, idx) => (
-              <li key={movie.id} className="shrink-0">
-                <Card movie={movie} isTvShow />
-              </li>
-            ))}
-          </ul>
+        <li>
+          <h2 className="font-bold text-xl mb-2">Latest Tv Shows</h2>
+          <Suspense fallback={<MovieListSkeleton />}>
+            <List api={fetchLatestTvShowsList} isTvShow />
+          </Suspense>
         </li>
         <li>
-          Popular Movies
-          <ul className="flex flex-nowrap gap-x-4 overflow-auto">
-            {POPULAR_MOVIES.results.map((movie) => (
-              <li key={movie.id}>
-                <Card movie={movie} />
-              </li>
-            ))}
-          </ul>
+          <h2 className="font-bold text-xl mb-2">Popular Movies</h2>
+          <Suspense fallback={<MovieListSkeleton />}>
+            <List api={fetchPopularMoviesList} isTvShow={false} />
+          </Suspense>
         </li>
         <li>
-          Popular Tv Shows
-          <ul className="flex flex-nowrap gap-x-4 overflow-auto">
-            {POPULAR_TV_SHOWS.results.map((movie) => (
-              <li key={movie.id}>
-                <Card movie={movie} isTvShow />
-              </li>
-            ))}
-          </ul>
+          <h2 className="font-bold text-xl mb-2">Popular Tv Shows</h2>
+          <Suspense fallback={<MovieListSkeleton />}>
+            <List api={fetchPopularTvShowsList} isTvShow />
+          </Suspense>
         </li>
+        {/* 
+
         <li>
           Popular Indian Movies
           <RegionalMoviesList region={SUPPORTED_REGIONS[0]} />

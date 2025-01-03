@@ -4,14 +4,21 @@ import { get } from "./request";
 import { Movie } from "@/ts/interfaces";
 const TMDB_API_URL = process.env.API_URL;
 
-export const getLatestMovies = async (options = {}) => {
-  return await get(`${TMDB_API_URL}discover/movie`, {
-    page: 1,
-    primary_release_year: new Date().getFullYear(),
-    sort_by: "popularity.desc",
-    ...options,
-  });
-};
+// export const getLatestMovies = async () => {
+//   return await get(`${TMDB_API_URL}discover/movie`, {
+//     page: 1,
+//     primary_release_year: new Date().getFullYear(),
+//     sort_by: "popularity.desc",
+//   });
+// };
+
+// export const getLatestTvShows = async () => {
+//   return await get(`${TMDB_API_URL}discover/tv`, {
+//     page: 1,
+//     primary_release_year: new Date().getFullYear(),
+//     sort_by: "popularity.desc",
+//   });
+// };
 
 export const getMovieDetails = async (id: string) => {
   return await get(`${TMDB_API_URL}movie/${id}`);
@@ -31,16 +38,16 @@ export const searchCollection = async (query: string) =>
 export const getGenres = (type: string) =>
   get(`${TMDB_API_URL}genre/${type}/list`);
 
-interface API_RESPONSE {
-  page: number;
-  results: Movie[];
-}
+// interface API_RESPONSE {
+//   page: number;
+//   results: Movie[];
+// }
 
-export const fetchTrendingMovies = async (
-  timeWindow: "week" | "day"
-): Promise<API_RESPONSE> => {
-  return get(`${TMDB_API_URL}trending/movie/${timeWindow}`);
-};
+// export const fetchTrendingMovies = async (
+//   timeWindow: "week" | "day"
+// ): Promise<API_RESPONSE> => {
+//   return get(`${TMDB_API_URL}trending/movie/${timeWindow}`);
+// };
 
 type PopularRegionMovieQuery = {
   region: (typeof SUPPORTED_REGIONS)[number];
@@ -57,3 +64,18 @@ export const fetchPopularRegionalMovies = async (
     })}`
   );
 };
+
+export const fetchUpcomingMovies = async () =>
+  await get(`${TMDB_API_URL}movie/upcoming?language=en-US&page=1`);
+
+export const fetchPopularMoviesList = async () =>
+  await get(`${TMDB_API_URL}movie/popular`);
+
+export const fetchPopularTvShowsList = async () =>
+  await get(`${TMDB_API_URL}tv/popular`);
+
+export const fetchLatesMoviesList = async () =>
+  await get(`${TMDB_API_URL}trending/movie/week`);
+
+export const fetchLatestTvShowsList = async () =>
+  await get(`${TMDB_API_URL}trending/tv/week`);
