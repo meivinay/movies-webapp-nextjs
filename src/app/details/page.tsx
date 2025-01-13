@@ -18,7 +18,12 @@ const Details = async (props: {
     ? getMovieDetails(id)
     : fetchTvShowDetails(id));
 
-  const { poster_path: posterPath, vote_average: voteAverage, title } = details;
+  const {
+    poster_path: posterPath,
+    vote_average: voteAverage,
+    title,
+    name,
+  } = details;
 
   return (
     <>
@@ -58,7 +63,7 @@ const Details = async (props: {
                 src={`${IMAGE_BASE_URL}original${posterPath}`}
                 height={240}
                 width={160}
-                alt={title}
+                alt={title || name}
               />
               {/* <img className=" rounded-2xl  outline outline-[16px] outline-sky-50"></img> */}
               <p className="absolute top-0 -right-2 text-black bg-white h-[50px] w-[50px] rounded-full flex items-center justify-center shadow-rating-circlee outline outline-8 outline-sky-50 ">
@@ -67,7 +72,7 @@ const Details = async (props: {
             </div>
           </div>
           <div className="shrink-0 p-7 bg-white  bottom-0 left-44 rounded-3xl shadow-movie-main-meta self-end ml-4">
-            <h1 className="text-xl">{title}</h1>
+            <h1 className="text-xl">{title || name}</h1>
             <div className="flex gap-x-2 relative">
               <button type="button" className="bg-[rgb(238, 238, 238)]">
                 Watch Trailer
