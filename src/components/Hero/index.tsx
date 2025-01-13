@@ -6,8 +6,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Movie } from "@/ts/interfaces";
 
-import { use, useState, useTransition } from "react";
+import { use, useEffect, useRef, useState, useTransition } from "react";
 import useInterval from "@/hooks/useInterval";
+import useImageCarousel from "@/hooks/useImageCarousel";
 const PlayIcon = dynamic(() => import("@/icons/PlayArrow"), { ssr: false });
 const InfoCircle = dynamic(() => import("@/icons/InfoCircle"), { ssr: false });
 
@@ -20,44 +21,45 @@ const Hero = (props: Props) => {
   const res = use(props.apiPromise);
   const results = res.results;
 
-  const [currIdx, setCurrIdx] = useState(0);
-  const [isPending, startTransition] = useTransition();
+  const { currIdx, next } = useImageCarousel(results.length);
 
-  useInterval(5000, () => {
-    if (!isPending) {
-      startTransition(() => {
-        setCurrIdx((prev) => {
-          if (prev + 1 === results.length) {
-            return 0;
-          }
-          return prev + 1;
-        });
-      });
-    }
-  });
   const currMovie = results[currIdx];
-
+  const ref = useRef<Record<number, HTMLImageElement | null>>({});
   return (
     <div className="hero relative h-5/6 shrink-0 mt-4">
       <div className="relative h-[90%] overflow-hidden rounded-[2rem]">
-        <div className="flex flex-nowrap overflow-hidden">
+        <div className="flex flex-nowrap overflow-hidden h-full w-full">
           {results.map((result, idx) => {
             return (
-              <Image
+              <div
                 key={result.id}
-                className={`rounded-[2rem] ${idx === currIdx ? "" : "hidden"}`}
-                src={`${IMAGE_BASE_URL}original${result.backdrop_path}`}
-                sizes="100vw"
-                style={{
-                  // width: "100%",
-                  // height: "auto",
-                  objectFit: "cover",
-                  objectPosition: "top",
-                }}
-                fill
-                alt={result.name || result.title}
-                priority
-              />
+                className={`relative h-full w-full shrink-0 ${
+                  currIdx === idx ? "" : "hidden"
+                }`}
+              >
+                <Image
+                  ref={(el) => {
+                    ref.current[idx] = el;
+                  }}
+                  // className={`rounded-[2rem] `}
+                  src={`${IMAGE_BASE_URL}original${result.backdrop_path}`}
+                  sizes="100vw"
+                  style={{
+                    // width: "100%",
+                    // height: "auto",
+                    objectFit: "cover",
+                    objectPosition: "top",
+                  }}
+                  fill
+                  alt={result.name || result.title}
+                  // priority={idx === 0}
+                  onLoad={() => {
+                    setTimeout(() => {
+                      next();
+                    }, 5000);
+                  }}
+                />
+              </div>
             );
           })}
         </div>
