@@ -20,7 +20,6 @@ const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;
 const Hero = (props: Props) => {
   const res = use(props.apiPromise);
   const results = res.results;
-
   const { currIdx, next } = useImageCarousel(results.length);
 
   const currMovie = results[currIdx];
@@ -101,7 +100,7 @@ const Hero = (props: Props) => {
             className="px-2 py-1 flex bg-amber-300 rounded items-center font-bold"
             href={{
               pathname: "/details",
-              query: { type: currMovie.media_type, id: currMovie.id },
+              query: { type: "movie", id: currMovie.id },
             }}
           >
             Details

@@ -1,7 +1,10 @@
-import { getMovieDetails, fetchTvShowDetails } from "@/api";
+import { getMovieDetails, fetchTvShowDetails, getImages } from "@/api";
+import Hero from "@/components/Details/Hero";
 import MetaDetails from "@/components/MetaDetails";
 const IMAGE_BASE_URL = process.env.TMDB_IMAGE_BASE_URL;
 import styles from "@/styles/curve.module.css";
+import Image from "next/image";
+import { Suspense } from "react";
 
 const Details = async (props: {
   searchParams: {
@@ -14,15 +17,15 @@ const Details = async (props: {
   const details = await (type === "movie"
     ? getMovieDetails(id)
     : fetchTvShowDetails(id));
+
   const { poster_path: posterPath, vote_average: voteAverage, title } = details;
 
   return (
-    <main className="flex grow gap-x-4 max-h-full my-4">
+    <>
       <div className="grow-3 shrink relative">
-        <img
-          src={`${IMAGE_BASE_URL}original${posterPath}`}
-          className="h-full w-full object-cover object-top rounded-3xl"
-        />
+        <Suspense fallback={<>loading</>}>
+          <Hero api={getImages(Number(id), type)} />
+        </Suspense>
         <div
           className={`absolute rounded-bl-full ${styles["main-detail-meta-top-left"]}`}
         />
@@ -50,10 +53,14 @@ const Details = async (props: {
                     "13px -8px 0px rgb(240 249 255 / var(--tw-bg-opacity))",
                 }}
               ></span>
-              <img
+              <Image
+                className="rounded-2xl  outline outline-[16px] outline-sky-50"
                 src={`${IMAGE_BASE_URL}original${posterPath}`}
-                className=" h-full w-full rounded-2xl  outline outline-[16px] outline-sky-50"
-              ></img>
+                height={240}
+                width={160}
+                alt={title}
+              />
+              {/* <img className=" rounded-2xl  outline outline-[16px] outline-sky-50"></img> */}
               <p className="absolute top-0 -right-2 text-black bg-white h-[50px] w-[50px] rounded-full flex items-center justify-center shadow-rating-circlee outline outline-8 outline-sky-50 ">
                 {voteAverage}
               </p>
@@ -79,7 +86,7 @@ const Details = async (props: {
         </div>
       </div>
       <MetaDetails details={details} />
-    </main>
+    </>
   );
 };
 

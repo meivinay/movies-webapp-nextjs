@@ -5,6 +5,7 @@ const MetaDetails = (props) => {
   const {
     details: { tagline, overview, release_date: releaseDate, runtime, genres },
   } = props;
+
   return (
     <div className={`grow shrink basis-0 p-4 ${styles["meta-details"]}`}>
       <h2 className="text-6xl font-bold mb-2">Overview</h2>

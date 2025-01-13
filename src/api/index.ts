@@ -81,3 +81,6 @@ export const fetchLatesMoviesList = async () =>
 
 export const fetchLatestTvShowsList = async () =>
   await get(`${TMDB_API_URL}trending/tv/week`);
+
+export const getImages = async (id: number, type: string) =>
+  await get(`${TMDB_API_URL}${type}/${id}/images`);
