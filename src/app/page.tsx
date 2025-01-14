@@ -11,7 +11,7 @@ import {
 
 import Hero from "@/components/Hero";
 import List from "@/components/MovieList";
-import RegionalMoviesList from "@/components/RegionalMoviesList";
+// import RegionalMoviesList from "@/components/RegionalMoviesList";
 import MovieListSkeleton from "@/components/MovieList/loading";
 import HeroLoading from "@/components/Hero/loading";
 

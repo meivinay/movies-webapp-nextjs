@@ -1,6 +1,6 @@
 import { getMovieDetails, fetchTvShowDetails, getImages } from "@/api";
 import Hero from "@/components/Details/Hero";
-import MetaDetails from "@/components/MetaDetails";
+import Sidebar from "@/components/Sidebar";
 const IMAGE_BASE_URL = process.env.TMDB_IMAGE_BASE_URL;
 import styles from "@/styles/curve.module.css";
 import Image from "next/image";
@@ -90,7 +90,7 @@ const Details = async (props: {
           </div>
         </div>
       </div>
-      <MetaDetails details={details} />
+      <Sidebar searchParams={searchParams} details={details} />
     </>
   );
 };

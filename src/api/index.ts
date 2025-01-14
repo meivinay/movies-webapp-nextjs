@@ -84,3 +84,6 @@ export const fetchLatestTvShowsList = async () =>
 
 export const getImages = async (id: number, type: string) =>
   await get(`${TMDB_API_URL}${type}/${id}/images`);
+
+export const getCredits = async (id: number, type: string) =>
+  await get(`${TMDB_API_URL}${type}/${id}/credits`);

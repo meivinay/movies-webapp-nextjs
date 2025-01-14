@@ -1,9 +1,10 @@
 .meta-details {
-  transition: 1s all ease;
+  transition: 1s all ease-out;
 }
 
 .meta-details:hover {
-  transition: 1s all ease;
+  will-change: auto;
+  transition: 700ms all ease-in-out;
   flex: 2 1;
   max-width: 500px;
 }
