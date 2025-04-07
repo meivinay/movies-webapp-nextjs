@@ -2,9 +2,10 @@
 import Search from "@/components/Search";
 import SearchList from "@/components/SearchList/indes";
 import TopSearchList from "@/components/TopSearchList/indes";
+import { PageProps } from "@/ts/interfaces";
 import { Suspense } from "react";
 
-const SearchPage = async (props) => {
+const SearchPage = async (props: PageProps) => {
   const { searchParams: { q } = {} } = props;
   // const [movieGenres, tvGenres] = await Promise.allSettled([
   //   getGenres("movie"),

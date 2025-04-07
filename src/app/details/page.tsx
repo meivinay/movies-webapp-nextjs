@@ -3,15 +3,11 @@ import Hero from "@/components/Details/Hero";
 import Sidebar from "@/components/Sidebar";
 const IMAGE_BASE_URL = process.env.TMDB_IMAGE_BASE_URL;
 import styles from "@/styles/curve.module.css";
+import { PageProps } from "@/ts/interfaces";
 import Image from "next/image";
 import { Suspense } from "react";
 
-const Details = async (props: {
-  searchParams: {
-    type: string;
-    id: string;
-  };
-}) => {
+const Details = async (props: PageProps) => {
   const { searchParams } = props;
   const { id, type } = searchParams;
   const details = await (type === "movie"

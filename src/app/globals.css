@@ -100,3 +100,12 @@ h6 {
   left: var(--poster-details-box-pos);
   width: var(--poster-details-box-width);
 }
+@media (max-width: 720px) {
+  .poster-details {
+    width: auto;
+    right: 0;
+  }
+  .left-r-cl {
+    display: none;
+  }
+}

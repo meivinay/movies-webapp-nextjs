@@ -12,8 +12,8 @@ type Images = {
   ];
 };
 
-const Hero = ({ api }) => {
-  const images: Images = use(api);
+const Hero = ({ api }: { api: Promise<Images> }) => {
+  const images = use(api);
   const _images = images.backdrops.slice(5);
   const { currIdx, next } = useImageCarousel(_images.length);
   return (

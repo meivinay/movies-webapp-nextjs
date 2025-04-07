@@ -11,4 +11,13 @@ export interface Movie {
   alt: string;
   src: string;
   name: string;
+  overview: string;
+  release_date: string;
+  runtime: string;
+  genres: string[];
+  tagline: string;
 }
+export interface SearchParams {
+  searchParams: Record<string, string>;
+}
+export interface PageProps extends SearchParams {}

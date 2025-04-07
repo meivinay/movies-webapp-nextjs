@@ -4,11 +4,14 @@ import Casts from "./Snippets/Casts";
 import styles from "@/styles/metaDetails.module.css";
 import { Suspense } from "react";
 import Loading from "./Snippets/Casts/loading";
-
+import { Movie, SearchParams } from "@/ts/interfaces";
 const NAV_LIST: string[] = ["overview", "casts"];
 
 const MetaDetails = (props) => {
-  const { details, searchParams } = props;
+  const {
+    details,
+    searchParams,
+  }: { searchParams: SearchParams; details: Movie } = props;
 
   return (
     <div

@@ -15,7 +15,7 @@ const RegionalMoviesList = async (props: Props) => {
   return (
     <ul className="flex flex-nowrap gap-x-4 overflow-auto">
       {list.results.map((movie) => {
-        return <Card key={movie.id} movie={movie} />;
+        return <Card key={movie.id} data={movie} isTvShow={false} />;
       })}
     </ul>
   );
